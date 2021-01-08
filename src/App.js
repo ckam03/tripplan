@@ -2,13 +2,19 @@ import React  from 'react';
 import NavBar from './components/NavBar';
 import Map from './components/Map';
 import './assets/tailwindoutput.css';
+import Locations from './components/Locations';
+import  {  LocationData } from './components/LocationData';
+//import Trips from './components/Trips';
 
 
 const App = () => {
   return (
-    <div className="flex flex-col">
+    <div className="">
       <NavBar />
-      <Map />
+      <div className="flex">
+      <Locations />
+      <Map LocationData={LocationData} />
+      </div>
     </div>
   );
 }

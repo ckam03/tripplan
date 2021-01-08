@@ -1,32 +1,53 @@
-import GoogleMapReact from 'google-map-react';
-import LocationMarker from './LocationMarker';
+import GoogleMapReact from "google-map-react";
+import LocationMarker from "./LocationMarker";
+import { useState } from "react";
+import LocationInfoBox from "./LocationInfoBox";
+let mapHeight = "calc(100vh - 52px)";
 
-let mapHeight = 'calc(100vh - 52px)';
+const Map = ({ LocationData, center, zoom }) => {
+  const [LocationInfo, setLocationInfo] = useState(LocationData);
 
-const Map = ({center, zoom}) => {
+
+  const Locations = LocationData.map((location, i) => {
+
     return (
-        <div className="w-full" style={{height: mapHeight }}>
-            <GoogleMapReact
-            
-            bootstrapURLKeys={{ key: 
-            process.env.REACT_APP_ACCESSKEY}}
-            defaultCenter= { center }
-            defaultZoom= { zoom }
-            >
-                <LocationMarker lat={center.lat} lng={center.lng} />
-            </GoogleMapReact>
-        </div>
-        
+      <LocationMarker
+        key={i}
+        lat={LocationData[i].lat}
+        lng={LocationData[i].lng}
+        onClick={() => 
+          setLocationInfo({
+            location: LocationData[i].location,
+            lat: LocationData[i].lat,
+            lng: LocationData[i].lng
+          })
+        }
+      />
     );
-}
+  });
+
+  return (
+    <div className="w-4/5" style={{ height: mapHeight }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: process.env.REACT_APP_ACCESSKEY }}
+        defaultCenter={center}
+        defaultZoom={zoom}
+      >
+        {Locations}
+      {LocationInfo && <LocationInfoBox lat={LocationInfo.lat} lng={LocationInfo.lng} location={LocationInfo.location} />}
+      </GoogleMapReact>
+
+    </div>
+  );
+};
 
 Map.defaultProps = {
-    center: {
-        lat: 42.3265,
-        lng: -122.8756
-    },
+  center: {
+    lat: 42.3265,
+    lng: -122.8756,
+  },
 
-    zoom: 6
-}
+  zoom: 5,
+};
 
 export default Map;

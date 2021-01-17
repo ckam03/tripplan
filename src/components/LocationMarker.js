@@ -1,6 +1,11 @@
-const LocationMarker = ({ lat, lng, onClick }) => {
+import LocationInfoBox from "./LocationInfoBox";
+
+
+const LocationMarker = ({ lat, lng, onMouseEnter, onMouseLeave }) => {
+
   return (
-    <div className="text-indigo-500" onClick={onClick}>
+    <div className="text-indigo-500"  onMouseEnter={onMouseEnter}
+    >
       <svg
         className="h-8 w-8"
         xmlns="http://www.w3.org/2000/svg"
@@ -13,6 +18,7 @@ const LocationMarker = ({ lat, lng, onClick }) => {
           clipRule="evenodd"
         />
       </svg>
+        
     </div>
   );
 };

@@ -8,7 +8,7 @@ export const LocationData = [
         location: 'Banff',
         lat: 51.180202,
         lng: -115.565704,
-        src: {banff}
+        src: '../imgs/banff.jpg'
     },
     {
         id: 1,

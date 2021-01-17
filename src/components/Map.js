@@ -2,25 +2,27 @@ import GoogleMapReact from "google-map-react";
 import LocationMarker from "./LocationMarker";
 import { useState } from "react";
 import LocationInfoBox from "./LocationInfoBox";
-let mapHeight = "calc(100vh - 52px)";
+
+let mapHeight = "calc(100vh - 49px)";
 
 const Map = ({ LocationData, center, zoom }) => {
-  const [LocationInfo, setLocationInfo] = useState(LocationData);
-
-
+  const [LocationInfo, setLocationInfo] = useState(LocationData); 
+  const [open, setOpen] = useState(false);
   const Locations = LocationData.map((location, i) => {
-
     return (
       <LocationMarker
         key={i}
         lat={LocationData[i].lat}
         lng={LocationData[i].lng}
-        onClick={() => 
+        onMouseEnter={() =>
           setLocationInfo({
             location: LocationData[i].location,
             lat: LocationData[i].lat,
-            lng: LocationData[i].lng
+            lng: LocationData[i].lng,
           })
+        }
+        onChildClick={() =>
+          setOpen(!open)
         }
       />
     );
@@ -34,9 +36,16 @@ const Map = ({ LocationData, center, zoom }) => {
         defaultZoom={zoom}
       >
         {Locations}
-      {LocationInfo && <LocationInfoBox lat={LocationInfo.lat} lng={LocationInfo.lng} location={LocationInfo.location} />}
+        
+        {LocationInfo && (
+          <LocationInfoBox
+            lat={LocationInfo.lat}
+            lng={LocationInfo.lng}
+            location={LocationInfo.location}
+            
+          />
+        )}
       </GoogleMapReact>
-
     </div>
   );
 };

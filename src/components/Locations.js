@@ -23,6 +23,6 @@ const Locations = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Locations;

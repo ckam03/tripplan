@@ -1,10 +1,15 @@
+
+import { useState } from "react";
 import LocationInfoBox from "./LocationInfoBox";
 
-
-const LocationMarker = ({ lat, lng, onMouseEnter, onMouseLeave }) => {
-
+const LocationMarker = ({ lat, lng, location, onMouseEnter, onMouseLeave }) => {
+  const [open, setOpen] = useState(false);
+ 
   return (
-    <div className="text-indigo-500"  onMouseEnter={onMouseEnter}
+    <div
+      className="text-indigo-500"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
     >
       <svg
         className="h-8 w-8"
@@ -18,7 +23,7 @@ const LocationMarker = ({ lat, lng, onMouseEnter, onMouseLeave }) => {
           clipRule="evenodd"
         />
       </svg>
-        
+      {open && (<LocationInfoBox location={location}/>)}
     </div>
   );
 };

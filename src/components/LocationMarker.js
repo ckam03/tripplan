@@ -2,7 +2,7 @@
 import { useState } from "react";
 import LocationInfoBox from "./LocationInfoBox";
 
-const LocationMarker = ({ lat, lng, location, onMouseEnter, onMouseLeave }) => {
+const LocationMarker = ({ lat, lng, location }) => {
   const [open, setOpen] = useState(false);
  
   return (

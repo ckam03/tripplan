@@ -14,6 +14,10 @@ module.exports = {
       },
       fontFamily: {
         'poppins':['Poppins', 'sans-serif'],
+      },
+
+      backgroundImage: {
+        'road': "url('/src/imgs/road.jpg')",
       }
     },
   },

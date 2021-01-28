@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 
 const Logout = (props) => {
+    
   const history = useHistory();
   const onSubmit = () => {
     history.push(`/login`);
